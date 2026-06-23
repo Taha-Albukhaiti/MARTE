@@ -1,0 +1,3 @@
+Tool execution result (JSON):
+{tool_result}
+Provide the final answer to the user.

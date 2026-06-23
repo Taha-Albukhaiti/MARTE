@@ -24,9 +24,9 @@ cp .env.example .env              # API-Keys und Modellnamen eintragen
 Wichtigste `.env`-Variablen:
 
 ```bash
-LLM_BASE_URL=
-ATTACK_LLM_MODEL=       # Planner + Mutator + Judge
-TARGET_LLM_MODEL=       # Zielagent
+LLM_BASE_URL=https://models.mylab.th-luebeck.dev/v1
+ATTACK_LLM_MODEL=glm-4.7        # Planner + Mutator + Judge
+TARGET_LLM_MODEL=gpt-oss-120b   # Zielagent
 ```
 
 Installation prüfen (kein API-Key nötig):

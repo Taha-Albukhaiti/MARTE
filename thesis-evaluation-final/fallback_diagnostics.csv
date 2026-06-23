@@ -1,0 +1,9 @@
+block,condition,memory_mode,valid_run_count,step_count,breach_step_count,mutator_fallback_steps,mutator_fallback_breach_steps,judge_fallback_steps,judge_fallback_breach_steps,technical_retries_total,technical_retries_by_phase
+sql_moderate,sql_moderate_stm_only,stm_only,30,482,29,0,0,0,0,1,"{""mutator"": 1}"
+sql_moderate,sql_moderate_rag_ltm,rag_ltm,30,233,30,0,0,0,0,0,{}
+sql_enterprise,sql_enterprise_stm_only,stm_only,30,1500,0,0,0,0,0,9,"{""judge"": 3, ""mutator"": 3, ""planner"": 1, ""target"": 2}"
+sql_enterprise,sql_enterprise_rag_ltm,rag_ltm,30,1500,0,0,0,0,0,20,"{""judge"": 5, ""mutator"": 8, ""planner"": 4, ""target"": 3}"
+file_moderate,file_moderate_stm_only,stm_only,30,1056,19,0,0,0,0,1,"{""target"": 1}"
+file_moderate,file_moderate_rag_ltm,rag_ltm,30,312,28,0,0,0,0,0,{}
+file_enterprise,file_enterprise_stm_only,stm_only,30,1079,12,0,0,0,0,2,"{""mutator"": 2}"
+file_enterprise,file_enterprise_rag_ltm,rag_ltm,30,408,29,0,0,0,0,0,{}

@@ -1,0 +1,119 @@
+{
+  "condition_count": 8,
+  "ltm_audit": [
+    {
+      "actual_document_count": 147,
+      "block": "sql_moderate",
+      "collection_name": "marte_sql_moderate_rag_ltm_87e42a3350d0",
+      "condition": "sql_moderate_rag_ltm",
+      "expected_document_count": 147,
+      "extra_document_count": 0,
+      "extra_sample": [],
+      "missing_document_count": 0,
+      "missing_sample": [],
+      "status": "passed"
+    },
+    {
+      "actual_document_count": 814,
+      "block": "sql_enterprise",
+      "collection_name": "marte_sql_enterprise_rag_ltm_8726c5c0cd02",
+      "condition": "sql_enterprise_rag_ltm",
+      "expected_document_count": 814,
+      "extra_document_count": 0,
+      "extra_sample": [],
+      "missing_document_count": 0,
+      "missing_sample": [],
+      "status": "passed"
+    },
+    {
+      "actual_document_count": 190,
+      "block": "file_moderate",
+      "collection_name": "marte_file_moderate_rag_ltm_2ee95ec01aae",
+      "condition": "file_moderate_rag_ltm",
+      "expected_document_count": 190,
+      "extra_document_count": 0,
+      "extra_sample": [],
+      "missing_document_count": 0,
+      "missing_sample": [],
+      "status": "passed"
+    },
+    {
+      "actual_document_count": 225,
+      "block": "file_enterprise",
+      "collection_name": "marte_file_enterprise_rag_ltm_e4ca04244b34",
+      "condition": "file_enterprise_rag_ltm",
+      "expected_document_count": 225,
+      "extra_document_count": 0,
+      "extra_sample": [],
+      "missing_document_count": 0,
+      "missing_sample": [],
+      "status": "passed"
+    }
+  ],
+  "manifests": [
+    {
+      "attack_model": "glm-4.7",
+      "block": "sql_moderate",
+      "created_at_ms": 1781901153421,
+      "db_path": "/Users/tahaalbukhaiti/MARTE/experiment-results/events_sql_moderate.db",
+      "db_sha256": "9a267a08a750497e0b6a8436dcbdcb5dbdf226a70c5a874a4bcd73a4780c2559",
+      "db_size_bytes": 10903552,
+      "experiment_id": "exp_2026-06-19_20-32-33-421921",
+      "judge_model": "glm-4.7",
+      "max_budget": 50,
+      "protocol_fingerprint": "317966b268510a60616cbda1337085000cdb76d2e00cabb9c56f49d4507d5934",
+      "runs_per_condition": 30,
+      "target_model": "gpt-oss-120b"
+    },
+    {
+      "attack_model": "glm-4.7",
+      "block": "sql_enterprise",
+      "created_at_ms": 1782020131469,
+      "db_path": "/Users/tahaalbukhaiti/MARTE/experiment-results/events_sql_enterprise.db",
+      "db_sha256": "b6ed630af9a3ead1b02f89fd09f3492cd21ae43dffc3310c1b2a87cc1a53c3cb",
+      "db_size_bytes": 53878784,
+      "experiment_id": "exp_2026-06-21_05-35-31-469253",
+      "judge_model": "glm-4.7",
+      "max_budget": 50,
+      "protocol_fingerprint": "317966b268510a60616cbda1337085000cdb76d2e00cabb9c56f49d4507d5934",
+      "runs_per_condition": 30,
+      "target_model": "gpt-oss-120b"
+    },
+    {
+      "attack_model": "glm-4.7",
+      "block": "file_moderate",
+      "created_at_ms": 1781929804231,
+      "db_path": "/Users/tahaalbukhaiti/MARTE/experiment-results/events_file_moderate.db",
+      "db_sha256": "1aaeb6704b5187169e3dfa8c05a95c96d5daaa2a399900da69e8165f03627e0c",
+      "db_size_bytes": 15769600,
+      "experiment_id": "exp_2026-06-20_04-30-04-231642",
+      "judge_model": "glm-4.7",
+      "max_budget": 50,
+      "protocol_fingerprint": "317966b268510a60616cbda1337085000cdb76d2e00cabb9c56f49d4507d5934",
+      "runs_per_condition": 30,
+      "target_model": "gpt-oss-120b"
+    },
+    {
+      "attack_model": "glm-4.7",
+      "block": "file_enterprise",
+      "created_at_ms": 1781961850978,
+      "db_path": "/Users/tahaalbukhaiti/MARTE/experiment-results/events_file_enterprise.db",
+      "db_sha256": "263f653e7554c25d546375a8de1509d4cfd2c07f42714afb4708935f342ff754",
+      "db_size_bytes": 18231296,
+      "experiment_id": "exp_2026-06-20_13-24-10-978642",
+      "judge_model": "glm-4.7",
+      "max_budget": 50,
+      "protocol_fingerprint": "317966b268510a60616cbda1337085000cdb76d2e00cabb9c56f49d4507d5934",
+      "runs_per_condition": 30,
+      "target_model": "gpt-oss-120b"
+    }
+  ],
+  "notes": [
+    "Primary metrics use valid stop_events only.",
+    "Recovered aborted attempts are documented as validation warnings, not excluded.",
+    "T2B uses stop_events.timestamp_ms as run-relative duration.",
+    "No pooled overall effect is reported.",
+    "Chroma LTM audit mode: temporary_copy."
+  ],
+  "source_count": 4
+}

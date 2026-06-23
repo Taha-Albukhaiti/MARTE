@@ -1,0 +1,5 @@
+"""Frozen retrieval calibration used by the main MARTE-thesis-worktree experiment."""
+
+RAG_CALIBRATION_VERSION = "rag-thresholds-v1-2026-06-13"
+CALIBRATED_POSITIVE_MIN_SIMILARITY = 0.5676532241107325
+CALIBRATED_BLOCKED_MIN_SIMILARITY = 0.6303290619675757

@@ -1,0 +1,108 @@
+{
+  "chroma_audit_mode": "temporary_copy",
+  "chroma_audit_path": "/var/folders/7m/m2_9nm4x4dj0hw6gcl_tclrh0000gn/T/marte-chroma-audit-v9fttgl8/chroma",
+  "chroma_path": "/Users/tahaalbukhaiti/MARTE/runtime/chroma",
+  "planned_holm_families": {
+    "asr": 4,
+    "q2b": 4,
+    "t2b": 4
+  },
+  "schema_version": 1,
+  "script": "scripts/build_thesis_evaluation.py",
+  "source_manifests": [
+    {
+      "attack_model": "glm-4.7",
+      "block": "sql_moderate",
+      "created_at_ms": 1781901153421,
+      "db_path": "/Users/tahaalbukhaiti/MARTE/experiment-results/events_sql_moderate.db",
+      "db_sha256": "9a267a08a750497e0b6a8436dcbdcb5dbdf226a70c5a874a4bcd73a4780c2559",
+      "db_size_bytes": 10903552,
+      "experiment_id": "exp_2026-06-19_20-32-33-421921",
+      "judge_model": "glm-4.7",
+      "max_budget": 50,
+      "protocol_fingerprint": "317966b268510a60616cbda1337085000cdb76d2e00cabb9c56f49d4507d5934",
+      "runs_per_condition": 30,
+      "target_model": "gpt-oss-120b"
+    },
+    {
+      "attack_model": "glm-4.7",
+      "block": "sql_enterprise",
+      "created_at_ms": 1782020131469,
+      "db_path": "/Users/tahaalbukhaiti/MARTE/experiment-results/events_sql_enterprise.db",
+      "db_sha256": "b6ed630af9a3ead1b02f89fd09f3492cd21ae43dffc3310c1b2a87cc1a53c3cb",
+      "db_size_bytes": 53878784,
+      "experiment_id": "exp_2026-06-21_05-35-31-469253",
+      "judge_model": "glm-4.7",
+      "max_budget": 50,
+      "protocol_fingerprint": "317966b268510a60616cbda1337085000cdb76d2e00cabb9c56f49d4507d5934",
+      "runs_per_condition": 30,
+      "target_model": "gpt-oss-120b"
+    },
+    {
+      "attack_model": "glm-4.7",
+      "block": "file_moderate",
+      "created_at_ms": 1781929804231,
+      "db_path": "/Users/tahaalbukhaiti/MARTE/experiment-results/events_file_moderate.db",
+      "db_sha256": "1aaeb6704b5187169e3dfa8c05a95c96d5daaa2a399900da69e8165f03627e0c",
+      "db_size_bytes": 15769600,
+      "experiment_id": "exp_2026-06-20_04-30-04-231642",
+      "judge_model": "glm-4.7",
+      "max_budget": 50,
+      "protocol_fingerprint": "317966b268510a60616cbda1337085000cdb76d2e00cabb9c56f49d4507d5934",
+      "runs_per_condition": 30,
+      "target_model": "gpt-oss-120b"
+    },
+    {
+      "attack_model": "glm-4.7",
+      "block": "file_enterprise",
+      "created_at_ms": 1781961850978,
+      "db_path": "/Users/tahaalbukhaiti/MARTE/experiment-results/events_file_enterprise.db",
+      "db_sha256": "263f653e7554c25d546375a8de1509d4cfd2c07f42714afb4708935f342ff754",
+      "db_size_bytes": 18231296,
+      "experiment_id": "exp_2026-06-20_13-24-10-978642",
+      "judge_model": "glm-4.7",
+      "max_budget": 50,
+      "protocol_fingerprint": "317966b268510a60616cbda1337085000cdb76d2e00cabb9c56f49d4507d5934",
+      "runs_per_condition": 30,
+      "target_model": "gpt-oss-120b"
+    }
+  ],
+  "sources": [
+    {
+      "block": "sql_moderate",
+      "db": "/Users/tahaalbukhaiti/MARTE/experiment-results/events_sql_moderate.db",
+      "expected_runs": 30,
+      "experiment_id": "exp_2026-06-19_20-32-33-421921",
+      "max_budget": 50,
+      "rag_condition": "sql_moderate_rag_ltm",
+      "stm_condition": "sql_moderate_stm_only"
+    },
+    {
+      "block": "sql_enterprise",
+      "db": "/Users/tahaalbukhaiti/MARTE/experiment-results/events_sql_enterprise.db",
+      "expected_runs": 30,
+      "experiment_id": "exp_2026-06-21_05-35-31-469253",
+      "max_budget": 50,
+      "rag_condition": "sql_enterprise_rag_ltm",
+      "stm_condition": "sql_enterprise_stm_only"
+    },
+    {
+      "block": "file_moderate",
+      "db": "/Users/tahaalbukhaiti/MARTE/experiment-results/events_file_moderate.db",
+      "expected_runs": 30,
+      "experiment_id": "exp_2026-06-20_04-30-04-231642",
+      "max_budget": 50,
+      "rag_condition": "file_moderate_rag_ltm",
+      "stm_condition": "file_moderate_stm_only"
+    },
+    {
+      "block": "file_enterprise",
+      "db": "/Users/tahaalbukhaiti/MARTE/experiment-results/events_file_enterprise.db",
+      "expected_runs": 30,
+      "experiment_id": "exp_2026-06-20_13-24-10-978642",
+      "max_budget": 50,
+      "rag_condition": "file_enterprise_rag_ltm",
+      "stm_condition": "file_enterprise_stm_only"
+    }
+  ]
+}

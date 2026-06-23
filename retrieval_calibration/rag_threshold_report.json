@@ -1,0 +1,31 @@
+{
+  "channels": {
+    "blocked": {
+      "irrelevant_pairs": 20,
+      "macro_f1": 0.8331168831168831,
+      "relevant_pairs": 20,
+      "stratum_f1": {
+        "file_enterprise": 0.7142857142857143,
+        "file_moderate": 0.9090909090909091,
+        "sql_enterprise": 0.8,
+        "sql_moderate": 0.9090909090909091
+      },
+      "threshold": 0.6303290619675757,
+      "total_pairs": 40
+    },
+    "positive": {
+      "irrelevant_pairs": 20,
+      "macro_f1": 0.7435897435897436,
+      "relevant_pairs": 20,
+      "stratum_f1": {
+        "file_enterprise": 0.7692307692307693,
+        "file_moderate": 0.7692307692307693,
+        "sql_enterprise": 0.6666666666666666,
+        "sql_moderate": 0.7692307692307693
+      },
+      "threshold": 0.5676532241107325,
+      "total_pairs": 40
+    }
+  },
+  "selection_rule": "maximize macro-F1 across scenario/guardrail strata; choose the higher threshold on ties"
+}
