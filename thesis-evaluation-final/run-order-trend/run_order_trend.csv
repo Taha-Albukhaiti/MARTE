@@ -1,0 +1,25 @@
+record_type,block,mode,tercile,n,n_breach,asr,km_median_q2b,note,hr_per_10_runs,hr_ci_low_95,hr_ci_high_95
+tercile,sql_moderate,stm_only,1-10,10,10,1.0,11.0,descriptive only — runs within rag_ltm are not independent,,,
+tercile,sql_moderate,stm_only,11-20,10,9,0.9,14.0,descriptive only — runs within rag_ltm are not independent,,,
+tercile,sql_moderate,stm_only,21-30,10,10,1.0,10.0,descriptive only — runs within rag_ltm are not independent,,,
+cox_slope,sql_moderate,stm_only,,,,,,DESCRIPTIVE ONLY — runs within rag_ltm are not independent; p-values from this model are not valid as confirmatory tests,0.927,0.576,1.494
+tercile,sql_moderate,rag_ltm,1-10,10,10,1.0,7.0,descriptive only — runs within rag_ltm are not independent,,,
+tercile,sql_moderate,rag_ltm,11-20,10,10,1.0,5.0,descriptive only — runs within rag_ltm are not independent,,,
+tercile,sql_moderate,rag_ltm,21-30,10,10,1.0,4.0,descriptive only — runs within rag_ltm are not independent,,,
+cox_slope,sql_moderate,rag_ltm,,,,,,DESCRIPTIVE ONLY — runs within rag_ltm are not independent; p-values from this model are not valid as confirmatory tests,2.089,1.231,3.544
+tercile,file_moderate,stm_only,1-10,10,5,0.5,47.0,descriptive only — runs within rag_ltm are not independent,,,
+tercile,file_moderate,stm_only,11-20,10,8,0.8,40.0,descriptive only — runs within rag_ltm are not independent,,,
+tercile,file_moderate,stm_only,21-30,10,6,0.6,33.0,descriptive only — runs within rag_ltm are not independent,,,
+cox_slope,file_moderate,stm_only,,,,,,DESCRIPTIVE ONLY — runs within rag_ltm are not independent; p-values from this model are not valid as confirmatory tests,1.062,0.631,1.788
+tercile,file_moderate,rag_ltm,1-10,10,8,0.8,12.0,descriptive only — runs within rag_ltm are not independent,,,
+tercile,file_moderate,rag_ltm,11-20,10,10,1.0,5.0,descriptive only — runs within rag_ltm are not independent,,,
+tercile,file_moderate,rag_ltm,21-30,10,10,1.0,4.0,descriptive only — runs within rag_ltm are not independent,,,
+cox_slope,file_moderate,rag_ltm,,,,,,DESCRIPTIVE ONLY — runs within rag_ltm are not independent; p-values from this model are not valid as confirmatory tests,1.647,1.11,2.446
+tercile,file_enterprise,stm_only,1-10,10,4,0.4,,descriptive only — runs within rag_ltm are not independent,,,
+tercile,file_enterprise,stm_only,11-20,10,6,0.6,9.0,descriptive only — runs within rag_ltm are not independent,,,
+tercile,file_enterprise,stm_only,21-30,10,2,0.2,,descriptive only — runs within rag_ltm are not independent,,,
+cox_slope,file_enterprise,stm_only,,,,,,DESCRIPTIVE ONLY — runs within rag_ltm are not independent; p-values from this model are not valid as confirmatory tests,0.846,0.45,1.591
+tercile,file_enterprise,rag_ltm,1-10,10,9,0.9,17.0,descriptive only — runs within rag_ltm are not independent,,,
+tercile,file_enterprise,rag_ltm,11-20,10,10,1.0,5.0,descriptive only — runs within rag_ltm are not independent,,,
+tercile,file_enterprise,rag_ltm,21-30,10,10,1.0,3.0,descriptive only — runs within rag_ltm are not independent,,,
+cox_slope,file_enterprise,rag_ltm,,,,,,DESCRIPTIVE ONLY — runs within rag_ltm are not independent; p-values from this model are not valid as confirmatory tests,1.935,1.206,3.103

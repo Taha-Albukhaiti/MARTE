@@ -1,0 +1,260 @@
+{
+  "disclaimer": "DESCRIPTIVE ANALYSIS ONLY. Runs within a RAG-LTM condition are not independent — each run retrieves from all prior runs' LTM episodes. Cox hazard ratios describe the observed temporal slope but are not valid as confirmatory statistical tests. Do not report p-values.",
+  "excluded_blocks": {
+    "sql_enterprise": "0 breaches in both arms — Q2B trend not defined"
+  },
+  "rows": [
+    {
+      "record_type": "tercile",
+      "block": "sql_moderate",
+      "mode": "stm_only",
+      "tercile": "1-10",
+      "n": 10,
+      "n_breach": 10,
+      "asr": 1.0,
+      "km_median_q2b": 11.0,
+      "note": "descriptive only — runs within rag_ltm are not independent"
+    },
+    {
+      "record_type": "tercile",
+      "block": "sql_moderate",
+      "mode": "stm_only",
+      "tercile": "11-20",
+      "n": 10,
+      "n_breach": 9,
+      "asr": 0.9,
+      "km_median_q2b": 14.0,
+      "note": "descriptive only — runs within rag_ltm are not independent"
+    },
+    {
+      "record_type": "tercile",
+      "block": "sql_moderate",
+      "mode": "stm_only",
+      "tercile": "21-30",
+      "n": 10,
+      "n_breach": 10,
+      "asr": 1.0,
+      "km_median_q2b": 10.0,
+      "note": "descriptive only — runs within rag_ltm are not independent"
+    },
+    {
+      "record_type": "cox_slope",
+      "block": "sql_moderate",
+      "mode": "stm_only",
+      "hr_per_10_runs": 0.927,
+      "hr_ci_low_95": 0.576,
+      "hr_ci_high_95": 1.494,
+      "note": "DESCRIPTIVE ONLY — runs within rag_ltm are not independent; p-values from this model are not valid as confirmatory tests"
+    },
+    {
+      "record_type": "tercile",
+      "block": "sql_moderate",
+      "mode": "rag_ltm",
+      "tercile": "1-10",
+      "n": 10,
+      "n_breach": 10,
+      "asr": 1.0,
+      "km_median_q2b": 7.0,
+      "note": "descriptive only — runs within rag_ltm are not independent"
+    },
+    {
+      "record_type": "tercile",
+      "block": "sql_moderate",
+      "mode": "rag_ltm",
+      "tercile": "11-20",
+      "n": 10,
+      "n_breach": 10,
+      "asr": 1.0,
+      "km_median_q2b": 5.0,
+      "note": "descriptive only — runs within rag_ltm are not independent"
+    },
+    {
+      "record_type": "tercile",
+      "block": "sql_moderate",
+      "mode": "rag_ltm",
+      "tercile": "21-30",
+      "n": 10,
+      "n_breach": 10,
+      "asr": 1.0,
+      "km_median_q2b": 4.0,
+      "note": "descriptive only — runs within rag_ltm are not independent"
+    },
+    {
+      "record_type": "cox_slope",
+      "block": "sql_moderate",
+      "mode": "rag_ltm",
+      "hr_per_10_runs": 2.089,
+      "hr_ci_low_95": 1.231,
+      "hr_ci_high_95": 3.544,
+      "note": "DESCRIPTIVE ONLY — runs within rag_ltm are not independent; p-values from this model are not valid as confirmatory tests"
+    },
+    {
+      "record_type": "tercile",
+      "block": "file_moderate",
+      "mode": "stm_only",
+      "tercile": "1-10",
+      "n": 10,
+      "n_breach": 5,
+      "asr": 0.5,
+      "km_median_q2b": 47.0,
+      "note": "descriptive only — runs within rag_ltm are not independent"
+    },
+    {
+      "record_type": "tercile",
+      "block": "file_moderate",
+      "mode": "stm_only",
+      "tercile": "11-20",
+      "n": 10,
+      "n_breach": 8,
+      "asr": 0.8,
+      "km_median_q2b": 40.0,
+      "note": "descriptive only — runs within rag_ltm are not independent"
+    },
+    {
+      "record_type": "tercile",
+      "block": "file_moderate",
+      "mode": "stm_only",
+      "tercile": "21-30",
+      "n": 10,
+      "n_breach": 6,
+      "asr": 0.6,
+      "km_median_q2b": 33.0,
+      "note": "descriptive only — runs within rag_ltm are not independent"
+    },
+    {
+      "record_type": "cox_slope",
+      "block": "file_moderate",
+      "mode": "stm_only",
+      "hr_per_10_runs": 1.062,
+      "hr_ci_low_95": 0.631,
+      "hr_ci_high_95": 1.788,
+      "note": "DESCRIPTIVE ONLY — runs within rag_ltm are not independent; p-values from this model are not valid as confirmatory tests"
+    },
+    {
+      "record_type": "tercile",
+      "block": "file_moderate",
+      "mode": "rag_ltm",
+      "tercile": "1-10",
+      "n": 10,
+      "n_breach": 8,
+      "asr": 0.8,
+      "km_median_q2b": 12.0,
+      "note": "descriptive only — runs within rag_ltm are not independent"
+    },
+    {
+      "record_type": "tercile",
+      "block": "file_moderate",
+      "mode": "rag_ltm",
+      "tercile": "11-20",
+      "n": 10,
+      "n_breach": 10,
+      "asr": 1.0,
+      "km_median_q2b": 5.0,
+      "note": "descriptive only — runs within rag_ltm are not independent"
+    },
+    {
+      "record_type": "tercile",
+      "block": "file_moderate",
+      "mode": "rag_ltm",
+      "tercile": "21-30",
+      "n": 10,
+      "n_breach": 10,
+      "asr": 1.0,
+      "km_median_q2b": 4.0,
+      "note": "descriptive only — runs within rag_ltm are not independent"
+    },
+    {
+      "record_type": "cox_slope",
+      "block": "file_moderate",
+      "mode": "rag_ltm",
+      "hr_per_10_runs": 1.647,
+      "hr_ci_low_95": 1.11,
+      "hr_ci_high_95": 2.446,
+      "note": "DESCRIPTIVE ONLY — runs within rag_ltm are not independent; p-values from this model are not valid as confirmatory tests"
+    },
+    {
+      "record_type": "tercile",
+      "block": "file_enterprise",
+      "mode": "stm_only",
+      "tercile": "1-10",
+      "n": 10,
+      "n_breach": 4,
+      "asr": 0.4,
+      "km_median_q2b": null,
+      "note": "descriptive only — runs within rag_ltm are not independent"
+    },
+    {
+      "record_type": "tercile",
+      "block": "file_enterprise",
+      "mode": "stm_only",
+      "tercile": "11-20",
+      "n": 10,
+      "n_breach": 6,
+      "asr": 0.6,
+      "km_median_q2b": 9.0,
+      "note": "descriptive only — runs within rag_ltm are not independent"
+    },
+    {
+      "record_type": "tercile",
+      "block": "file_enterprise",
+      "mode": "stm_only",
+      "tercile": "21-30",
+      "n": 10,
+      "n_breach": 2,
+      "asr": 0.2,
+      "km_median_q2b": null,
+      "note": "descriptive only — runs within rag_ltm are not independent"
+    },
+    {
+      "record_type": "cox_slope",
+      "block": "file_enterprise",
+      "mode": "stm_only",
+      "hr_per_10_runs": 0.846,
+      "hr_ci_low_95": 0.45,
+      "hr_ci_high_95": 1.591,
+      "note": "DESCRIPTIVE ONLY — runs within rag_ltm are not independent; p-values from this model are not valid as confirmatory tests"
+    },
+    {
+      "record_type": "tercile",
+      "block": "file_enterprise",
+      "mode": "rag_ltm",
+      "tercile": "1-10",
+      "n": 10,
+      "n_breach": 9,
+      "asr": 0.9,
+      "km_median_q2b": 17.0,
+      "note": "descriptive only — runs within rag_ltm are not independent"
+    },
+    {
+      "record_type": "tercile",
+      "block": "file_enterprise",
+      "mode": "rag_ltm",
+      "tercile": "11-20",
+      "n": 10,
+      "n_breach": 10,
+      "asr": 1.0,
+      "km_median_q2b": 5.0,
+      "note": "descriptive only — runs within rag_ltm are not independent"
+    },
+    {
+      "record_type": "tercile",
+      "block": "file_enterprise",
+      "mode": "rag_ltm",
+      "tercile": "21-30",
+      "n": 10,
+      "n_breach": 10,
+      "asr": 1.0,
+      "km_median_q2b": 3.0,
+      "note": "descriptive only — runs within rag_ltm are not independent"
+    },
+    {
+      "record_type": "cox_slope",
+      "block": "file_enterprise",
+      "mode": "rag_ltm",
+      "hr_per_10_runs": 1.935,
+      "hr_ci_low_95": 1.206,
+      "hr_ci_high_95": 3.103,
+      "note": "DESCRIPTIVE ONLY — runs within rag_ltm are not independent; p-values from this model are not valid as confirmatory tests"
+    }
+  ]
+}

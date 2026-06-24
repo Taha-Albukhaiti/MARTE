@@ -96,6 +96,41 @@ PHASE_LABELS = {
     "planner_blocked": "Planner: blockierte Muster",
     "mutator_positive": "Mutator: positive Episoden",
 }
+BLOCK_LABELS_EN: dict[str, str] = {
+    "sql_moderate": "SQL Moderate",
+    "sql_enterprise": "SQL Enterprise",
+    "file_moderate": "File Moderate",
+    "file_enterprise": "File Enterprise",
+}
+PHASE_LABELS_EN: dict[str, str] = {
+    "planner_positive": "Planner: positive episodes",
+    "planner_blocked": "Planner: blocked patterns",
+    "mutator_positive": "Mutator: positive episodes",
+}
+_PLOT_LABELS: dict[str, dict[str, Any]] = {
+    "de": {
+        "block": BLOCK_LABELS,
+        "phase": PHASE_LABELS,
+        "risk_diff_xlabel": "Risikodifferenz RAG − STM (Prozentpunkte)",
+        "step_xlabel": "Schritt $t$",
+        "no_breach_ylabel": "$P(\\mathrm{kein\\ Breach\\ bis\\ }t)$",
+        "all_censored": "alle Läufe zensiert",
+        "q2b_budget_ylabel": "Q2B / Budgetgrenze",
+        "censored_label": "zensiert",
+        "retrieval_ylabel": "Retrievalabfragen mit Treffer (%)",
+    },
+    "en": {
+        "block": BLOCK_LABELS_EN,
+        "phase": PHASE_LABELS_EN,
+        "risk_diff_xlabel": "Risk Difference RAG − STM (percentage points)",
+        "step_xlabel": "Step $t$",
+        "no_breach_ylabel": "$P(\\mathrm{no\\ breach\\ until\\ }t)$",
+        "all_censored": "all runs censored",
+        "q2b_budget_ylabel": "Q2B / Budget Limit",
+        "censored_label": "censored",
+        "retrieval_ylabel": "Retrieval queries with hit (%)",
+    },
+}
 STM_COLOR = "#1f77b4"
 RAG_COLOR = "#d55e00"
 PHASE_COLORS = {
@@ -313,17 +348,21 @@ def build_evaluation(
 
     plots_dir = output_dir / "figures"
     plots_dir.mkdir(exist_ok=True)
-    plot_issues = write_plots(
-        plots_dir=plots_dir,
-        block_payloads=block_payloads,
-        condition_rows=condition_rows,
-        comparison_rows=comparison_rows,
-        retrieval_rows=retrieval_rows,
-    )
-    if plot_issues:
-        all_issues.extend(plot_issues)
-        validation = build_validation_report(all_issues)
-        write_json(output_dir / "validation_report.json", validation)
+    for lang in ("de", "en"):
+        lang_plots_dir = plots_dir / lang
+        lang_plots_dir.mkdir(exist_ok=True)
+        plot_issues = write_plots(
+            plots_dir=lang_plots_dir,
+            block_payloads=block_payloads,
+            condition_rows=condition_rows,
+            comparison_rows=comparison_rows,
+            retrieval_rows=retrieval_rows,
+            lang=lang,
+        )
+        if plot_issues:
+            all_issues.extend(plot_issues)
+    validation = build_validation_report(all_issues)
+    write_json(output_dir / "validation_report.json", validation)
 
     return {
         "validation": validation,
@@ -1626,6 +1665,7 @@ def write_plots(
         condition_rows: list[dict[str, Any]],
         comparison_rows: list[dict[str, Any]],
         retrieval_rows: list[dict[str, Any]],
+        lang: str = "de",
 ) -> list[ValidationIssue]:
     try:
         cache_root = Path(tempfile.gettempdir()) / "marte-thesis-evaluation-cache"
@@ -1654,17 +1694,19 @@ def write_plots(
             "ps.fonttype": 42,
         }
     )
-    plot_asr_forest(plt, plots_dir / "asr_risk_difference_forest.pdf", comparison_rows)
-    plot_q2b_km_panels(plt, plots_dir / "q2b_km_panels.pdf", block_payloads)
-    plot_run_order(plt, plots_dir / "run_order_q2b.pdf", block_payloads)
-    plot_retrieval_hitrate(plt, plots_dir / "retrieval_hitrate.pdf", retrieval_rows)
+    labels = _PLOT_LABELS.get(lang, _PLOT_LABELS["de"])
+    plot_asr_forest(plt, plots_dir / "asr_risk_difference_forest.pdf", comparison_rows, labels)
+    plot_q2b_km_panels(plt, plots_dir / "q2b_km_panels.pdf", block_payloads, labels)
+    plot_run_order(plt, plots_dir / "run_order_q2b.pdf", block_payloads, labels)
+    plot_retrieval_hitrate(plt, plots_dir / "retrieval_hitrate.pdf", retrieval_rows, labels)
     return []
 
 
-def plot_asr_forest(plt: Any, path: Path, rows: list[dict[str, Any]]) -> None:
+def plot_asr_forest(plt: Any, path: Path, rows: list[dict[str, Any]], labels: dict[str, Any]) -> None:
+    block_labels = labels["block"]
     fig, ax = plt.subplots(figsize=(7.2, 3.8))
-    labels = [BLOCK_LABELS.get(row["block"], row["block"]) for row in rows]
-    y = np.arange(len(labels))
+    y_labels = [block_labels.get(row["block"], row["block"]) for row in rows]
+    y = np.arange(len(y_labels))
     x = np.array([(row["risk_difference_rag_minus_stm"] or 0.0) * 100 for row in rows], dtype=float)
     low = np.array(
         [
@@ -1691,8 +1733,8 @@ def plot_asr_forest(plt: Any, path: Path, rows: list[dict[str, Any]]) -> None:
     )
     ax.axvline(0.0, color="0.2", linewidth=0.9, linestyle="--")
     ax.set_yticks(y)
-    ax.set_yticklabels(labels)
-    ax.set_xlabel("Risikodifferenz RAG - STM (Prozentpunkte)")
+    ax.set_yticklabels(y_labels)
+    ax.set_xlabel(labels["risk_diff_xlabel"])
     ax.set_xlim(-30, 100)
     ax.set_xticks([-25, 0, 25, 50, 75, 100])
     ax.grid(axis="x", alpha=0.25)
@@ -1705,10 +1747,11 @@ def plot_asr_forest(plt: Any, path: Path, rows: list[dict[str, Any]]) -> None:
     plt.close(fig)
 
 
-def plot_q2b_km_panels(plt: Any, path: Path, block_payloads: dict[str, dict[str, Any]]) -> None:
+def plot_q2b_km_panels(plt: Any, path: Path, block_payloads: dict[str, dict[str, Any]], labels: dict[str, Any]) -> None:
+    block_labels = labels["block"]
     fig, axes = plt.subplots(2, 2, figsize=(9.4, 6.2), sharex=True, sharey=True)
     legend_handles = None
-    legend_labels = None
+    legend_label_texts = None
     for ax, block in zip(axes.flatten(), PAIR_ORDER):
         payload = block_payloads[block]
         source: SourceSpec = payload["source"]
@@ -1734,13 +1777,13 @@ def plot_q2b_km_panels(plt: Any, path: Path, block_payloads: dict[str, dict[str,
                 censor_styles={"marker": "|", "ms": 6, "mew": 1.2},
             )
         if legend_handles is None:
-            legend_handles, legend_labels = ax.get_legend_handles_labels()
+            legend_handles, legend_label_texts = ax.get_legend_handles_labels()
         existing_legend = ax.get_legend()
         if existing_legend is not None:
             existing_legend.remove()
-        ax.set_title(BLOCK_LABELS.get(block, block), fontsize=11)
-        ax.set_xlabel("Schritt $t$")
-        ax.set_ylabel("$P(\\mathrm{kein\\ Breach\\ bis\\ }t)$")
+        ax.set_title(block_labels.get(block, block), fontsize=11)
+        ax.set_xlabel(labels["step_xlabel"])
+        ax.set_ylabel(labels["no_breach_ylabel"])
         ax.set_xlim(0, 50)
         ax.set_ylim(-0.03, 1.03)
         ax.grid(alpha=0.22)
@@ -1748,7 +1791,7 @@ def plot_q2b_km_panels(plt: Any, path: Path, block_payloads: dict[str, dict[str,
             ax.text(
                 0.5,
                 0.84,
-                "alle Läufe zensiert",
+                labels["all_censored"],
                 transform=ax.transAxes,
                 ha="center",
                 va="center",
@@ -1756,14 +1799,16 @@ def plot_q2b_km_panels(plt: Any, path: Path, block_payloads: dict[str, dict[str,
                 color="0.25",
                 bbox={"boxstyle": "round,pad=0.25", "fc": "white", "ec": "0.75", "alpha": 0.9},
             )
-    if legend_handles is not None and legend_labels is not None:
-        fig.legend(legend_handles, legend_labels, loc="upper center", ncol=2, bbox_to_anchor=(0.5, 1.02))
+    if legend_handles is not None and legend_label_texts is not None:
+        fig.legend(legend_handles, legend_label_texts, loc="upper center", ncol=2, bbox_to_anchor=(0.5, 1.02))
     fig.tight_layout(rect=(0, 0, 1, 0.96))
     fig.savefig(path, bbox_inches="tight")
     plt.close(fig)
 
 
-def plot_run_order(plt: Any, path: Path, block_payloads: dict[str, dict[str, Any]]) -> None:
+def plot_run_order(plt: Any, path: Path, block_payloads: dict[str, dict[str, Any]], labels: dict[str, Any]) -> None:
+    block_labels = labels["block"]
+    censored_label = labels["censored_label"]
     fig, axes = plt.subplots(2, 2, figsize=(9.4, 6.2), sharex=True, sharey=True)
     legend_entries: dict[str, Any] = {}
     for ax, block in zip(axes.flatten(), PAIR_ORDER):
@@ -1795,7 +1840,7 @@ def plot_run_order(plt: Any, path: Path, block_payloads: dict[str, dict[str, Any
                 handle = ax.scatter(
                     [int(row["seed"]) + offset for row in censored],
                     [int(row["q2b"]) for row in censored],
-                    label=f"{label}: zensiert",
+                    label=f"{label}: {censored_label}",
                     marker=marker,
                     facecolors="none",
                     edgecolors=color,
@@ -1803,10 +1848,10 @@ def plot_run_order(plt: Any, path: Path, block_payloads: dict[str, dict[str, Any
                     alpha=0.95,
                     linewidths=1.3,
                 )
-                legend_entries.setdefault(f"{label}: zensiert", handle)
-        ax.set_title(BLOCK_LABELS.get(block, block), fontsize=11)
-        ax.set_xlabel("Seed")
-        ax.set_ylabel("Q2B / Budgetgrenze")
+                legend_entries.setdefault(f"{label}: {censored_label}", handle)
+        ax.set_title(block_labels.get(block, block), fontsize=11)
+        ax.set_xlabel(labels["step_xlabel"])
+        ax.set_ylabel(labels["q2b_budget_ylabel"])
         ax.set_xlim(0.4, 30.6)
         ax.set_ylim(0, 52)
         ax.grid(alpha=0.22)
@@ -1814,7 +1859,7 @@ def plot_run_order(plt: Any, path: Path, block_payloads: dict[str, dict[str, Any
             ax.text(
                 0.5,
                 0.82,
-                "alle Läufe zensiert",
+                labels["all_censored"],
                 transform=ax.transAxes,
                 ha="center",
                 va="center",
@@ -1834,7 +1879,9 @@ def plot_run_order(plt: Any, path: Path, block_payloads: dict[str, dict[str, Any
     plt.close(fig)
 
 
-def plot_retrieval_hitrate(plt: Any, path: Path, rows: list[dict[str, Any]]) -> None:
+def plot_retrieval_hitrate(plt: Any, path: Path, rows: list[dict[str, Any]], labels: dict[str, Any]) -> None:
+    block_labels = labels["block"]
+    phase_labels = labels["phase"]
     fig, ax = plt.subplots(figsize=(9.2, 4.5))
     block_positions = np.arange(len(PAIR_ORDER))
     width = 0.23
@@ -1853,14 +1900,14 @@ def plot_retrieval_hitrate(plt: Any, path: Path, rows: list[dict[str, Any]]) -> 
             block_positions + phase_offsets[phase],
             values,
             width=width,
-            label=PHASE_LABELS[phase],
+            label=phase_labels.get(phase, phase),
             color=PHASE_COLORS[phase],
             edgecolor="white",
             linewidth=0.7,
         )
     ax.set_xticks(block_positions)
-    ax.set_xticklabels([BLOCK_LABELS.get(block, block) for block in PAIR_ORDER])
-    ax.set_ylabel("Retrievalabfragen mit Treffer (%)")
+    ax.set_xticklabels([block_labels.get(block, block) for block in PAIR_ORDER])
+    ax.set_ylabel(labels["retrieval_ylabel"])
     ax.set_ylim(0.0, 100.0)
     ax.set_yticks([0, 20, 40, 60, 80, 100])
     ax.legend(loc="upper center", ncol=3, bbox_to_anchor=(0.5, 1.18))

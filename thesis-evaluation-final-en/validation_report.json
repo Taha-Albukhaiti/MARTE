@@ -1,0 +1,34 @@
+{
+  "errors": 0,
+  "issues": [
+    {
+      "block": "file_moderate",
+      "code": "recovered_run_attempt",
+      "condition": "file_moderate_stm_only",
+      "level": "warning",
+      "message": "Run attempt 28 ended as aborted and was superseded by a valid retry: Process ended before a terminal run event; attempt superseded on resume.",
+      "run_id": 28,
+      "seed": 14
+    },
+    {
+      "block": "file_enterprise",
+      "code": "recovered_run_attempt",
+      "condition": "file_enterprise_stm_only",
+      "level": "warning",
+      "message": "Run attempt 17 ended as aborted and was superseded by a valid retry: LLM completion truncated (role=attack, model=glm-4.7, finish_reason=length, output_limit=700, prompt_tokens=1894, completion_tokens=700, reasoning_tokens=None)",
+      "run_id": 17,
+      "seed": 9
+    },
+    {
+      "block": "file_enterprise",
+      "code": "recovered_run_attempt",
+      "condition": "file_enterprise_stm_only",
+      "level": "warning",
+      "message": "Run attempt 18 ended as aborted and was superseded by a valid retry: LLM completion truncated (role=attack, model=glm-4.7, finish_reason=length, output_limit=700, prompt_tokens=2055, completion_tokens=700, reasoning_tokens=None)",
+      "run_id": 18,
+      "seed": 9
+    }
+  ],
+  "status": "warnings",
+  "warnings": 3
+}

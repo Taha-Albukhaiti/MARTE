@@ -1,0 +1,50 @@
+[
+  {
+    "actual_document_count": 147,
+    "block": "sql_moderate",
+    "collection_name": "marte_sql_moderate_rag_ltm_87e42a3350d0",
+    "condition": "sql_moderate_rag_ltm",
+    "expected_document_count": 147,
+    "extra_document_count": 0,
+    "extra_sample": [],
+    "missing_document_count": 0,
+    "missing_sample": [],
+    "status": "passed"
+  },
+  {
+    "actual_document_count": 814,
+    "block": "sql_enterprise",
+    "collection_name": "marte_sql_enterprise_rag_ltm_8726c5c0cd02",
+    "condition": "sql_enterprise_rag_ltm",
+    "expected_document_count": 814,
+    "extra_document_count": 0,
+    "extra_sample": [],
+    "missing_document_count": 0,
+    "missing_sample": [],
+    "status": "passed"
+  },
+  {
+    "actual_document_count": 190,
+    "block": "file_moderate",
+    "collection_name": "marte_file_moderate_rag_ltm_2ee95ec01aae",
+    "condition": "file_moderate_rag_ltm",
+    "expected_document_count": 190,
+    "extra_document_count": 0,
+    "extra_sample": [],
+    "missing_document_count": 0,
+    "missing_sample": [],
+    "status": "passed"
+  },
+  {
+    "actual_document_count": 225,
+    "block": "file_enterprise",
+    "collection_name": "marte_file_enterprise_rag_ltm_e4ca04244b34",
+    "condition": "file_enterprise_rag_ltm",
+    "expected_document_count": 225,
+    "extra_document_count": 0,
+    "extra_sample": [],
+    "missing_document_count": 0,
+    "missing_sample": [],
+    "status": "passed"
+  }
+]
